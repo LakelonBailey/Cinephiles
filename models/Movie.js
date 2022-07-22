@@ -24,14 +24,13 @@ Movie.init (
                 isURL: true,
             }
         },
-        {
-            sequelize,
-            timestamps: false,
-            freezeTableName: true,
-            underscored: true,
-            modelName: 'movie',
-        },
-    },
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'movie',
+        
+    }
 ]
 );
 
