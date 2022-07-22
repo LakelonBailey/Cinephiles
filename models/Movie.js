@@ -4,9 +4,8 @@ const sequelize = require('../config/connection');
 class Movie extends Model {}
 
 Movie.init (
-[ 
-   {
-        id: {
+  {
+    id: {
          type: DataTypes.INTEGER,
          allowNull:false,
          primaryKey: true,
@@ -15,24 +14,20 @@ Movie.init (
         title: {
             type: DataTypes.STRING,
             allowNull: false,
-      
         },
-        image: { 
+    image: { 
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 isURL: true,
             }
         },
-        {
-            sequelize,
-            timestamps: false,
-            freezeTableName: true,
-            underscored: true,
-            modelName: 'movie',
-        },
-    },
-]
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'movie',
+    }
 );
 
 
