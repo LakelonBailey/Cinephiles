@@ -1,0 +1,15 @@
+.body {
+    height: 100vh;
+}
+.main-section {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center;
+}
+.auth-box {
+    width: fit-content;
+}
