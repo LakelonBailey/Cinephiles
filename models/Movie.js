@@ -1,10 +1,11 @@
 const { Model, DataTypes} = require('sequelize');
+
 const sequelize = require('../config/connection');
+
 
 class Movie extends Model {}
 
-Movie.init (
-[ 
+Movie.init(
    {
         id: {
          type: DataTypes.INTEGER,
@@ -24,14 +25,14 @@ Movie.init (
                 isURL: true,
             }
         },
+    },
+    {
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'movie',
-        
     }
-]
 );
 
 
