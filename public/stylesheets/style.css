@@ -13,3 +13,18 @@
 .auth-box {
     width: fit-content;
 }
+.search-box {
+    width: 100%;
+}
+.search-cont {
+    padding: 12px;
+    width: fit-content;
+    border: 2px solid lightgray;
+}
+.result-cont {
+    height: 600px;
+    overflow-y: scroll;
+}
+.movie-img {
+    height: 100px;
+}
