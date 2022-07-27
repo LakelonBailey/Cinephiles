@@ -32,4 +32,4 @@ const handleSearchChange = (event) => {
 
 document.querySelector('#search-type').addEventListener('change', event => {
     handleSearchChange(event)
-})
+});
