@@ -21,3 +21,10 @@
     width: fit-content;
     border: 2px solid lightgray;
 }
+.result-cont {
+    height: 600px;
+    overflow-y: scroll;
+}
+.movie-img {
+    height: 100px;
+}

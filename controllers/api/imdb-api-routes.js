@@ -1,9 +1,10 @@
 const router = require('express').Router();
 
 
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
+    console.log(req.body)
     res.json({
-        message: 'message'
+        message: 'success'
     })
 })
 
