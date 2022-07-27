@@ -1,8 +1,5 @@
-const { application } = require('express');
-var express = require('express').Router();
-var router  = express.Router();
-var movie = require('../../models/movie');
-application.use("../../models/movie", movie);
+var router = require('express').Router();
+const { Movie } = require('../../models/Movie');
 
 //get a movie from the list
 router.get("https://imdb-api.com/en/API/SearchMovie/k_12345678/:id", function (req, res) {
@@ -22,4 +19,4 @@ router.delete('/movie', function (req, res) {
 /*TESTTEST*/
 
 
-module.export = router;
+module.exports = router;
