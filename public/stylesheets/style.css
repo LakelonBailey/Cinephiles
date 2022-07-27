@@ -3,7 +3,7 @@
 }
 .main-section {
     position: fixed;
-    height: 100%;
+    height: 90vh;
     width: 100%;
     margin: auto;
     margin-top: 5vh;
@@ -18,12 +18,20 @@
 }
 .search-cont {
     padding: 12px;
-    width: fit-content;
+    width: 100%;
     border: 2px solid lightgray;
 }
 .result-cont {
-    height: 600px;
-    overflow-y: scroll;
+    height: 90%;
+    overflow-y: auto;
+}
+.movie-list-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.movie-title {
+    margin-left: 8px;
 }
 .movie-img {
     height: 100px;

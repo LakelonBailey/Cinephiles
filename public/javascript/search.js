@@ -69,17 +69,20 @@ const displayResults = results => {
     }
     results.forEach(movie => {
         let listItem = document.createElement('li')
-        listItem.value = movie.id
-
-        let movieTitleEl = document.createElement('p')
-        movieTitleEl
-        movieTitleEl.textContent = movie.title
-        listItem.appendChild(movieTitleEl)
+        listItem.classList = 'movie-list-item'
+        listItem.id = movie.id
 
         let movieImgEl = document.createElement('img')
+        movieImgEl.id = movie.id + '-img'
         movieImgEl.src = movie.image
         movieImgEl.classList = 'movie-img'
         listItem.appendChild(movieImgEl)
+
+        let movieTitleEl = document.createElement('p')
+        movieTitleEl.id = movie.id + '-title'
+        movieTitleEl.classList = 'title is-size-6 movie-title'
+        movieTitleEl.textContent = movie.title
+        listItem.appendChild(movieTitleEl)
 
         resultList.appendChild(listItem)
     })
