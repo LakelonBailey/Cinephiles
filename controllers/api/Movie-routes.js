@@ -7,8 +7,10 @@ router.get("https://imdb-api.com/en/API/SearchMovie/k_12345678/:id", function (r
 });
 
 //post movie to watchlist
-router.post('/movie', function (req, res) {
-    res.send('Posted to movies list.')
+router.post('/', function (req, res) {
+    data = req.body
+    console.log(data)
+    res.json(data)
 });
 
 //delete movie from watchlist
