@@ -62,29 +62,57 @@ document.getElementById('search-form').addEventListener('submit', event => {
 
 
 const displayResults = results => {
-    console.log(results)
-    const resultList = document.getElementById('result-list')
-    while(resultList.firstChild) {
-        resultList.firstChild.remove()
+    let resultCont = document.getElementById('result-cont')
+    if (results.length) {
+        let movieList = ``
+        results.forEach(movie => {
+            let movieListItem = `
+            <li class="movie-list-item">
+                <img class="movie-img" id="${movie.id}-img" src="${movie.image}">
+                <div class="movie-info">
+                    <p id="${movie.id}-title" class="title is-size-6 movie-title">
+                    ${movie.title}
+                    </p>
+                    <button value="${movie.id}" class="button is-small movie-button" onclick="addToWatchlist(event)">
+                    Add to Watchlist
+                    </button>
+                </div>
+            </li>
+            `
+            movieList += movieListItem
+        })
+        resultCont.innerHTML =`
+        <ul class="result-list">
+            ${movieList}
+        </ul>
+        `
     }
-    results.forEach(movie => {
-        let listItem = document.createElement('li')
-        listItem.classList = 'movie-list-item'
-        listItem.id = movie.id
+    else {
+        resultCont.innerHTML = `
+        <p>No Results Found</p>
+        `
+    }
+}
 
-        let movieImgEl = document.createElement('img')
-        movieImgEl.id = movie.id + '-img'
-        movieImgEl.src = movie.image
-        movieImgEl.classList = 'movie-img'
-        listItem.appendChild(movieImgEl)
+const addToWatchlist = event => {
+    let imdbId = event.target.value;
+    let movieTitle = document.getElementById(imdbId + '-title').textContent.trim();;
+    let movieImage = document.getElementById(imdbId + '-img').src;
 
-        let movieTitleEl = document.createElement('p')
-        movieTitleEl.id = movie.id + '-title'
-        movieTitleEl.classList = 'title is-size-6 movie-title'
-        movieTitleEl.textContent = movie.title
-        listItem.appendChild(movieTitleEl)
+    body = {
+        imdb_id: imdbId,
+        title: movieTitle,
+        image: movieImage
+    }
 
-        resultList.appendChild(listItem)
+    fetch('/api/movie/', {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    }).then(dbMovieData => {
+        console.log(dbMovieData)
     })
-
 }

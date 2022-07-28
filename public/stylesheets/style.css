@@ -30,9 +30,14 @@
     justify-content: flex-start;
     align-items: flex-start;
 }
-.movie-title {
-    margin-left: 8px;
-}
 .movie-img {
     height: 100px;
+}
+.movie-info {
+    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+}
+.movie-button {
+    width: fit-content;
 }

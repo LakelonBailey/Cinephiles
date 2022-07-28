@@ -13,10 +13,13 @@ Movie.init(
          primaryKey: true,
          autoIncrement: true,
         },
+        imdb_id: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         title: {
             type: DataTypes.STRING,
             allowNull: false,
-      
         },
         image: { 
             type: DataTypes.STRING,
