@@ -53,6 +53,7 @@ router.post('/', (req, res) => {
                         type: 'is-success'
                     })
                 })
+
             })
         }
     })
@@ -63,6 +64,7 @@ router.delete('/:id', (req, res) => {
     Watchlist.delete({
         where: {
             movie_id: req.params.id,
+
             user_id: req.session.user_id
         }
     }).then(dbWatchlistData => {
@@ -73,10 +75,13 @@ router.delete('/:id', (req, res) => {
         }).then(dbMovieData => {
             res.status(200).json({
                 message: dbMovieData.title + ' was successfuly removed from Watchlist!',
+
                 type: 'is-success'
             })
         })
     })
 });
 
+
 module.exports = router;
+
