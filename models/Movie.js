@@ -23,10 +23,7 @@ Movie.init(
         },
         image: { 
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                isURL: true,
-            }
+            allowNull: false
         },
     },
     {

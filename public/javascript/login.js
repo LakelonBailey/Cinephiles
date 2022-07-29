@@ -17,7 +17,9 @@ async function loginFormHandler(event) {
     if (response.ok) {
       document.location.replace('/watchlist/');
     } else {
-      alert(response.statusText);
+      response.json().then(data => {
+        alert(data.message)
+      })
     }
   }
 }
@@ -43,7 +45,9 @@ async function signupFormHandler(event) {
     if (response.ok) {
       document.location.replace('/watchlist/');
     } else {
-      alert(response.statusText);
+      response.json().then(data => {
+        alert(data.message)
+      })
     }
   }
 }

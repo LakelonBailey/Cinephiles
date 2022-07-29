@@ -1,4 +1,5 @@
 const searchBtn = document.getElementById('search-submit');
+
 const handleSearchChange = (event) => {
     let type = event.target.value
     let nameInputField = document.getElementById('name-input-field')
@@ -37,6 +38,8 @@ const search = async type => {
 
     return response;
 }
+
+
 document.getElementById('search-form').addEventListener('submit', event => {
     event.preventDefault();
     searchBtn.classList.add('is-loading');
@@ -94,6 +97,7 @@ const displayResults = results => {
     }
 }
 
+
 const addToWatchlist = event => {
     let imdbId = event.target.value;
     let movieTitle = document.getElementById(imdbId + '-title').textContent.trim();;
@@ -112,7 +116,25 @@ const addToWatchlist = event => {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         }
-    }).then(dbMovieData => {
-        console.log(dbMovieData)
+    }).then(res => {
+        res.json().then(data => {
+            event.target.parentElement.parentElement.remove();
+            displayMessage(data.message, data.type)
+        })
     })
+}
+
+
+const displayMessage = (message, type) => {
+    document.getElementById('notif-cont').innerHTML = `
+    <div class="notification ${type}">
+        <button class="delete" onclick="deleteNotif(event)"></button>
+        ${message}
+    </div>
+    `
+}
+
+
+const deleteNotif = event => {
+    event.target.parentElement.remove()
 }
