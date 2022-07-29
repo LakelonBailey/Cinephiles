@@ -3,7 +3,7 @@ const { Movie, Watchlist } = require('../../models')
 
 
 //post movie to watchlist
-router.post('/', function (req, res) {
+router.post('/', (req, res) => {
     const data = req.body;
     const imdbId = data.imdb_id
     const userId = req.session.user_id
@@ -59,7 +59,7 @@ router.post('/', function (req, res) {
 });
 
 //delete movie from watchlist
-router.delete('/:id', function (req, res) {
+router.delete('/:id', (req, res) => {
     Watchlist.delete({
         where: {
             movie_id: req.params.id,
