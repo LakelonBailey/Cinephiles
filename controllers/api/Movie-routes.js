@@ -61,7 +61,7 @@ router.post('/', (req, res) => {
 
 //delete movie from watchlist
 router.delete('/:id', (req, res) => {
-    Watchlist.delete({
+    Watchlist.destroy({
         where: {
             movie_id: req.params.id,
 
