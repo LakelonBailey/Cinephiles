@@ -1,7 +1,11 @@
 <div class="box watchlist-box">
-    <h2 class="title is-size-5">Watchlist</h2>
+    <div class="watchlist-header">
+        <h2 class="title is-size-5">{{data.username}}'s Watchlist</h2>
+        <div id="notif-cont"></div>
+    </div>
     {{#if data.watchlisted_movies.length}}
-    <ul>
+    <div class="result-cont">
+        <ul class="result-list">
         {{#each data.watchlisted_movies as |movie|}}
             <li class="movie-list-item">
                 <img class="movie-img" id="${movie.id}-img" src="{{movie.image}}">
@@ -9,6 +13,9 @@
                     <p id="{{movie.id}}-title" class="title is-size-6 movie-title">
                     {{movie.title}}
                     </p>
+                     <button value="{{movie.imdb_id}}" class="button is-small movie-button" onclick="viewMovie(event)">
+                    View Movie
+                    </button>
                     <button value="{{movie.id}}" class="button is-small movie-button" onclick="deleteFromWatchlist(event)">
                     Delete from Watchlist
                     </button>
@@ -16,5 +23,10 @@
             </li>
         {{/each}}
     </ul>
+    </div>
+    {{else}}
+    <p>No movies yet. Search for movies <a href="/search">Here</a></p>
     {{/if}}
+
 </div>
+<script src="/javascript/watchlist.js"></script>

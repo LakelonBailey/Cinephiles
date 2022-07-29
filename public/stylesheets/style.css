@@ -53,3 +53,23 @@
 .notif-cont {
     margin-top: 12px;
 }
+.watchlist-header {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    margin-bottom: 12px;
+}
+.notification {
+    width: fit-content;
+}
+.modal-movie-info {
+    width: 100%;
+    display: flex;
+}
+.movie-text {
+    margin-left: 12px;
+}
+.modal-movie-img {
+    width: 50%;
+    height: auto;
+}

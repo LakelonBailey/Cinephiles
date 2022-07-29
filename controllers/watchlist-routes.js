@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
 const { User, Movie, Watchlist } = require('../models')
-const userAttr = ['username']
 const movieAttr = ['id', 'imdb_id', 'title', 'image']
 
 router.get('/', withAuth, (req, res) => {
@@ -21,7 +20,10 @@ router.get('/', withAuth, (req, res) => {
         const userData = data.get({
             plain: true
         })
-        res.render('watchlist',{data: userData})
+        res.render('watchlist',{
+            data: userData,
+            loggedIn: req.session.loggedIn
+        })
     })
 })
 
