@@ -1,4 +1,5 @@
-var router = require('express').Router();
+const router = require('express').Router();
+const sequelize = require('../../config/connection');
 const { Movie, Watchlist } = require('../../models')
 
 
@@ -66,18 +67,42 @@ router.delete('/:id', (req, res) => {
             movie_id: req.params.id,
 
             user_id: req.session.user_id
-        }
+        },
     }).then(dbWatchlistData => {
         Movie.findOne({
             where: {
                 id: req.params.id
-            }
+            },
+            attributes: [
+                'id',
+                'imdb_id',
+                'title',
+                'image',
+                [sequelize.literal('(SELECT COUNT(*) FROM watchlist WHERE movie.id = watchlist.movie_id)'), 'watchlist_count']
+              ]
         }).then(dbMovieData => {
-            res.status(200).json({
-                message: dbMovieData.title + ' was successfuly removed from Watchlist!',
-
-                type: 'is-success'
+            let movieData = dbMovieData.get({
+                plain: true
             })
+            let movieTitle = dbMovieData.title
+            if (movieData.watchlist_count == 0) {
+                Movie.destroy({
+                    where: {
+                        id: movieData.id
+                    }
+                }).then(dbMovieData => {
+                    res.status(200).json({
+                        message: movieTitle + ' was successfuly removed from Watchlist!',
+                        type: 'is-success'
+                    })
+                })
+            }
+            else {
+                res.status(200).json({
+                    message: movieTitle + ' was successfuly removed from Watchlist!',
+                    type: 'is-success'
+                })
+            }
         })
     })
 });

@@ -1,9 +1,9 @@
 .body {
-    height: 100vh;
+    height: fit-content;
 }
 .main-section {
-    position: fixed;
-    height: 90vh;
+    min-height: 100vh;
+    height: fit-content;
     width: 100%;
     margin: auto;
     margin-top: 5vh;
@@ -24,12 +24,24 @@
 .box {
     width: 100%;
 }
+.search-box, .homepage-box {
+    height: 85vh;
+}
+.watchlist-box {
+    height: 85vh;
+    max-height: fit-content;
+}
 .search-cont {
     padding: 12px;
     width: 100%;
     border: 2px solid lightgray;
 }
 .result-cont {
+    height: fit-content;
+    max-height: 90%;
+    overflow-y: auto;
+}
+.homepage-cont, .watchlist-cont {
     height: 90%;
     overflow-y: auto;
 }
@@ -50,17 +62,20 @@
 .movie-button {
     width: fit-content;
 }
-.notif-cont {
-    margin-top: 12px;
+#notif-cont {
+    width: 100%;
+    margin-top: 24px;
+    position: fixed;
+    display: flex;
+    justify-content: center;
 }
 .watchlist-header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    height: 50px;
+    min-height: 50px;
+    height: fit-content;
     margin-bottom: 12px;
-}
-.notification {
-    width: fit-content;
 }
 .modal-movie-info {
     width: 100%;
@@ -72,4 +87,24 @@
 .modal-movie-img {
     width: 50%;
     height: auto;
+}
+
+@media screen and (max-width: 770px) {
+    .result-cont {
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 575) {
+    .modal-movie-info {
+        width: 100%;
+        flex-direction: column;
+    }
+    .movie-text {
+        margin: none;
+    }
+    .modal-movie-img {
+        width: 100%;
+        height: 250px;
+    }
 }

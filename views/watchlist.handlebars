@@ -1,10 +1,9 @@
 <div class="box watchlist-box">
     <div class="watchlist-header">
         <h2 class="title is-size-5">{{data.username}}'s Watchlist</h2>
-        <div id="notif-cont"></div>
     </div>
     {{#if data.watchlisted_movies.length}}
-    <div class="result-cont">
+    <div class="watchlist-cont">
         <ul class="result-list">
         {{#each data.watchlisted_movies as |movie|}}
             <li class="movie-list-item">

@@ -15,32 +15,13 @@ router.get('/', (req, res) => {
       [sequelize.literal('watchlist_count'), 'DESC']
     ]
   }).then(dbMovieData => {
-    let movies = dbMovieData.map(movie => movie.get({
+    const movies = dbMovieData.map(movie => movie.get({
       plain: true
     }))
-    let moviesToDelete = []
-    let moviesToShow = []
-    for (let movie of movies) {
-      if (movie.watchlist_count == 0) {
-        moviesToDelete.push(movie.id)
-      }
-      else {
-        moviesToShow.push(movie)
-      }
-    }
 
-    if (!moviesToDelete.length == 0) {
-      Movie.destroy({
-        where: {
-          id: moviesToDelete
-        }
-      }).then(dbMovieData => {
-        console.log(dbMovieData)
-      })
-    }
     res.render('homepage', {
       loggedIn: req.session.loggedIn,
-      movies: moviesToShow
+      movies: movies
     })
   })
 })
