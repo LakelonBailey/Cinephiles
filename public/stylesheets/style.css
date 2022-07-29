@@ -10,10 +10,18 @@
     display: flex;
     justify-content: center;
 }
-.auth-box {
-    width: fit-content;
+.auth-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
 }
-.search-box {
+.login-box, .signup-box {
+    margin: 12px;
+    width: fit-content;
+    flex: 1;
+}
+.box {
     width: 100%;
 }
 .search-cont {
@@ -26,6 +34,7 @@
     overflow-y: auto;
 }
 .movie-list-item {
+    margin: 12px 0;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -40,4 +49,7 @@
 }
 .movie-button {
     width: fit-content;
+}
+.notif-cont {
+    margin-top: 12px;
 }

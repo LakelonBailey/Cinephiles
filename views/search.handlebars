@@ -2,35 +2,34 @@
     <div class="column is-one-third"> 
         <div class="search-cont">
             <form id="search-form">
-        <div class="field"> 
-            <label class="label">Select Search Type:</label>
-            <div class="control">
-                <div class="select"> 
-                    <select id="search-type" required>
-                        <option class="is-hidden" value="" selected>Select</option>
-                        <option value="top250">Top 250 Movies</option>
-                        <option value="popular">Most Popular Movies</option>
-                        <option value="name">Movie Name</option>
-                    </select>
+                <div class="field"> 
+                    <label class="label">Select Search Type:</label>
+                    <div class="control">
+                        <div class="select"> 
+                            <select id="search-type" required>
+                                <option class="is-hidden" value="" selected>Select</option>
+                                <option value="top250">Top 250 Movies</option>
+                                <option value="popular">Most Popular Movies</option>
+                                <option value="name">Movie Name</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <div class="field is-hidden" id="name-input-field">
+                    <div class="control">
+                        <input type="text" class="input" placeholder="Enter Movie Name" id="name-input">
+                    </div>
+                </div>
+                <div class="control">
+                    <button class="button is-small is-success" type="submit" id="search-submit">Submit</button>
+                </div>
+            </form>
         </div>
-        <div class="field is-hidden" id="name-input-field">
-            <div class="control">
-                <input type="text" class="input" placeholder="Enter Movie Name" id="name-input">
-            </div>
-        </div>
-        <div class="control">
-            <button class="button is-small is-success" type="submit" id="search-submit">Submit</button>
-        </div>
-        </form>
-        </div>
+        <div class="notif-cont" id="notif-cont"></div>
     </div>
     <div class="column is-two-thirds">
         <h2 class="title is-size-4">Results</h2>
         <div class="result-cont content" id="result-cont">
-            <p>
-            </p>
         </div>
     </div>
     <script src="/javascript/search.js"></script>
