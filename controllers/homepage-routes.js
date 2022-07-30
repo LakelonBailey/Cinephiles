@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Movie } = require('../models')
+const { Movie, Review, User } = require('../models')
 
 router.get('/', (req, res) => {
   Movie.findAll({
@@ -9,7 +9,8 @@ router.get('/', (req, res) => {
       'imdb_id',
       'title',
       'image',
-      [sequelize.literal('(SELECT COUNT(*) FROM watchlist WHERE movie.id = watchlist.movie_id)'), 'watchlist_count']
+      [sequelize.literal('(SELECT COUNT(*) FROM watchlist WHERE movie.id = watchlist.movie_id)'), 'watchlist_count'],
+      [sequelize.literal('(SELECT COUNT(*) FROM review WHERE movie.id = review.movie_id)'), 'review_count']
     ],
     order: [
       [sequelize.literal('watchlist_count'), 'DESC']
@@ -25,6 +26,70 @@ router.get('/', (req, res) => {
     })
   })
 })
+
+router.get('/reviews/:id', (req, res) => {
+  Movie.findOne({
+    where: {
+      id: req.params.id
+    },
+    include: [
+      {
+        model: Review,
+        include: [
+          {
+            model: User,
+            attributes: ['id', 'username']
+          }
+        ]
+      }
+    ]
+  }).then(dbMovieData => {
+    const movie = dbMovieData.get({
+      plain: true
+    })
+    movie.reviews.forEach(review => {
+      review.rating_arr = []
+      for (let i = 0; i<review.rating; i++) {
+        review.rating_arr.push(0)
+      }
+      if (review.user_id == req.session.user_id) {
+        review.can_delete = true
+      }
+      else {
+        review.can_delete = false
+      }
+    })
+    res.render('single-movie', {
+      movie: movie,
+      loggedIn: req.session.loggedIn,
+      user_id: req.session.user_id
+    })
+  })
+})
+
+router.delete('/reviews/:id', (req, res) => {
+  Review.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(dbReviewData => {
+    res.json(dbReviewData)
+  })
+})
+
+router.post('/reviews/', (req, res) => {
+  Review.create({
+    user_id: req.session.user_id,
+    movie_id: req.body.movie_id,
+    rating: req.body.rating,
+    review_text: req.body.review_text
+  })
+  .then(dbReviewData => {
+    console.log(dbReviewData)
+    res.json(dbReviewData)
+  })
+})
+
 
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {

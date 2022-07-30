@@ -12,12 +12,13 @@
                     <p id="{{movie.id}}-title" class="title is-size-6 movie-title">
                     {{movie.title}}
                     </p>
-                     <button value="{{movie.imdb_id}}" class="button is-small is-info is-outlined movie-button is-rounded" onclick="viewMovie(event)">
-                    View Movie
+                     <button value="{{movie.imdb_id}}" class="button is-small movie-button" onclick="viewMovie(event)">
+                    More Info
                     </button>
                     <button value="{{movie.id}}" class="button is-small is-danger is-outlined movie-button is-rounded" onclick="deleteFromWatchlist(event)">
                     Delete from Watchlist
                     </button>
+                    <a href="/reviews{{movie.id}}">Reviews</a>
                 </div>
             </li>
         {{/each}}
