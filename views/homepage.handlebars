@@ -1,4 +1,4 @@
-<div class="box homepage-box">
+<div class="box homepage-box has-background-grey-lighter">
     <h2 class="title is-size-5">Homepage</h2>
     {{#if movies.length}}
     <div class="homepage-cont">
@@ -7,11 +7,11 @@
             <li class="movie-list-item">
                 <img class="movie-img" id="${movie.id}-img" src="{{movie.image}}">
                 <div class="movie-info">
-                    <p id="{{movie.id}}-title" class="title is-size-6 movie-title">
+                    <p id="{{movie.id}}-title" class="title is-size-6 movie-title has-text-weight-semibold">
                     {{movie.title}}
                     </p>
-                    <p><strong>Watchlist Additions:</strong> {{movie.watchlist_count}}</p>
-                    <button value="{{movie.imdb_id}}" class="button is-small movie-button" onclick="viewMovie(event)">
+                    <p class="is-size-6 has-text-weight-semibold">Appears on {{movie.watchlist_count}} {{format_plural "cinephile" movie.watchlist_count}} watchlist</p>
+                    <button value="{{movie.imdb_id}}" class="button is-small is-info is-outlined movie-button is-rounded" onclick="viewMovie(event)">
                     View Movie
                     </button>
                 </div>
