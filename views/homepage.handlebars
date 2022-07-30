@@ -14,7 +14,7 @@
                     <button value="{{movie.imdb_id}}" class="button is-small movie-button" onclick="viewMovie(event)">
                     More Info
                     </button>
-                    <a href="/reviews/{{movie.id}}">{{ movie.review_count }} Reviews</a>
+                    <a href="/reviews/{{movie.id}}">{{ review_count }} {{format_plural_reviews 'Review' review_count }}</a>
                 </div>
             </li>
         {{/each}}

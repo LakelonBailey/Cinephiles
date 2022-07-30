@@ -3,7 +3,6 @@ async function loginFormHandler(event) {
 
   const email = document.querySelector('#email-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
-
   if (email && password) {
     const response = await fetch('/api/users/login', {
       method: 'post',
@@ -18,7 +17,7 @@ async function loginFormHandler(event) {
       document.location.replace('/watchlist/');
     } else {
       response.json().then(data => {
-        alert(data.message)
+        displayMessage(data.message, data.type)
       })
     }
   }
@@ -46,11 +45,27 @@ async function signupFormHandler(event) {
       document.location.replace('/watchlist/');
     } else {
       response.json().then(data => {
-        alert(data.message)
+        displayMessage(data.message, data.type)
       })
     }
   }
 }
+
+
+const displayMessage = (message, type) => {
+  let notifCont = document.getElementById('notif-cont')
+  let notif = document.createElement('div')
+  notif.innerHTML = `
+  <div class="notification ${type}">
+      ${message}
+  </div>
+  `
+  notifCont.appendChild(notif)
+  setTimeout(() => {
+      notif.remove()
+  }, 3000)
+}
+
 
 document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
 

@@ -18,7 +18,7 @@
                     <button value="{{movie.id}}" class="button is-small is-danger is-outlined movie-button is-rounded" onclick="deleteFromWatchlist(event)">
                     Delete from Watchlist
                     </button>
-                    <a href="/reviews{{movie.id}}">Reviews</a>
+                    <a href="/reviews/{{movie.id}}">{{ movie.reviews.length }} {{format_plural_reviews 'Review' movie.reviews.length }}</a>
                 </div>
             </li>
         {{/each}}

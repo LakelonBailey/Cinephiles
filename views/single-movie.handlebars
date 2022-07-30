@@ -46,7 +46,6 @@
                 <p class="review-title label is-small">{{user.username}}'s review{{#if can_delete }}<span> - <a id="{{id}}" onclick="deleteReview(event)">Delete</a></span></p>{{/if}}
                 <div class="review-info">
                     <p>Rating: {{#each rating_arr}}<span class="fa fa-star review-star"></span>{{/each}}</p>
-                    <p>Review:</p>
                     <p>
                         "{{ review_text }}"
                     </p>
