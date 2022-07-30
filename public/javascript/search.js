@@ -77,7 +77,7 @@ const displayResults = results => {
                     ${movie.title}
                     </p>
                     <button value="${movie.id}" class="button is-small movie-button" onclick="viewMovie(event)">
-                    View Movie
+                    More Info
                     </button>
                     <button value="${movie.id}" class="button is-small movie-button" onclick="addToWatchlist(event)">
                     Add to Watchlist

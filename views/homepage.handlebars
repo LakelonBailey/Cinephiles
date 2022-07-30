@@ -12,8 +12,9 @@
                     </p>
                     <p><strong>Watchlist Additions:</strong> {{movie.watchlist_count}}</p>
                     <button value="{{movie.imdb_id}}" class="button is-small movie-button" onclick="viewMovie(event)">
-                    View Movie
+                    More Info
                     </button>
+                    <a href="/reviews/{{movie.id}}">{{ movie.review_count }} Reviews</a>
                 </div>
             </li>
         {{/each}}

@@ -13,11 +13,12 @@
                     {{movie.title}}
                     </p>
                      <button value="{{movie.imdb_id}}" class="button is-small movie-button" onclick="viewMovie(event)">
-                    View Movie
+                    More Info
                     </button>
                     <button value="{{movie.id}}" class="button is-small movie-button" onclick="deleteFromWatchlist(event)">
                     Delete from Watchlist
                     </button>
+                    <a href="/reviews{{movie.id}}">Reviews</a>
                 </div>
             </li>
         {{/each}}
