@@ -8,6 +8,7 @@ const viewMovie = event => {
   fetch(url)
   .then(res => {
     res.json().then(data => {
+      console.log(data)
       infoCont.innerHTML = `
       <h3 class="title is-size-6">${data.fullTitle}</h3>
 

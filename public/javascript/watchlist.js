@@ -10,7 +10,6 @@ const deleteFromWatchlist = event => {
     })
     .then(res => {
         if (res.ok) {
-            console.log('this')
             res.json().then(data => {
                 event.target.parentElement.parentElement.remove();
                 displayMessage(data.message, 'is-success')
@@ -20,16 +19,15 @@ const deleteFromWatchlist = event => {
 }
 
 
+
 const displayMessage = (message, type) => {
-    document.getElementById('notif-cont').innerHTML = `
+    let notif = document.getElementById('notif-cont')
+    notif.innerHTML = `
     <div class="notification ${type}">
-        <button class="delete" onclick="deleteNotif(event)"></button>
         ${message}
     </div>
     `
-}
-
-
-const deleteNotif = event => {
-    event.target.parentElement.remove()
+    setTimeout(() => {
+        notif.innerHTML = ``
+    }, 1000)
 }
