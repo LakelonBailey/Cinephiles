@@ -18,6 +18,12 @@ module.exports = {
       }
   
       return word;
+    },
+    format_plural_reviews: (word, amount) => {
+      if (amount !== 1) {
+        return `${word}s`;
+      }
+      return word;
     }
   };
   

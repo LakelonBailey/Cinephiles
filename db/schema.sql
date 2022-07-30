@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS cinephilia_db;
-CREATE DATABASE cinephilia_db;
+DROP DATABASE IF EXISTS cinephiles_db;
+CREATE DATABASE cinephiles_db;

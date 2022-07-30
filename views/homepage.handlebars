@@ -10,10 +10,11 @@
                     <p id="{{movie.id}}-title" class="title is-size-6 movie-title has-text-weight-semibold">
                     {{movie.title}}
                     </p>
-                    <p class="is-size-6 has-text-weight-semibold">Appears on {{movie.watchlist_count}} {{format_plural "cinephile" movie.watchlist_count}} watchlist</p>
-                    <button value="{{movie.imdb_id}}" class="button is-small is-info is-outlined movie-button is-rounded" onclick="viewMovie(event)">
-                    View Movie
+                    <p><strong>Watchlist Additions:</strong> {{movie.watchlist_count}}</p>
+                    <button value="{{movie.imdb_id}}" class="button is-small movie-button" onclick="viewMovie(event)">
+                    More Info
                     </button>
+                    <a href="/reviews/{{movie.id}}">{{ review_count }} {{format_plural_reviews 'Review' review_count }}</a>
                 </div>
             </li>
         {{/each}}

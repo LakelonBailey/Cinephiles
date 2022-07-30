@@ -76,8 +76,8 @@ const displayResults = results => {
                     <p id="${movie.id}-title" class="title is-size-6 movie-title">
                     ${movie.title}
                     </p>
-                    <button value="${movie.id}" class="button is-small movie-button is-info is-outlined is-rounded" onclick="viewMovie(event)">
-                    View Movie
+                    <button value="${movie.id}" class="button is-small movie-button" onclick="viewMovie(event)">
+                    More Info
                     </button>
                     <button value="${movie.id}" class="button is-small movie-button is-success is-outlined is-rounded" onclick="addToWatchlist(event)">
                     Add to Watchlist
@@ -129,13 +129,15 @@ const addToWatchlist = event => {
 
 
 const displayMessage = (message, type) => {
-    let notif = document.getElementById('notif-cont')
+    let notifCont = document.getElementById('notif-cont')
+    let notif = document.createElement('div')
     notif.innerHTML = `
     <div class="notification ${type}">
         ${message}
     </div>
     `
+    notifCont.appendChild(notif)
     setTimeout(() => {
-        notif.innerHTML = ``
+        notif.remove()
     }, 1000)
 }

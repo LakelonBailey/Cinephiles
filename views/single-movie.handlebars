@@ -1,0 +1,63 @@
+<div class="single-box box">
+    <h2 class="title is-size-5">{{ movie.title }}</h2>
+    <div class="single-movie-info">
+        <span>
+            <img src="{{ movie.image }}" class="movie-img">
+        </span>
+        <span>
+            <button value="{{ movie.imdb_id }}" class="button" onclick="viewMovie(event)">More Info</button>
+        </span>
+    </div>
+    {{#if loggedIn}}
+    <div class="add-review-section">
+        <h3><strong>Add a Review!</strong></h3>
+        <form id="review-form">
+            <input class="is-hidden" type="number" id="movie-id" value="{{ movie.id }}">
+            <div class="field">
+                <label class="label is-small">Rating</label>
+                <div class="control">
+                    <div class="select is-small">
+                    <select id="rating" required>
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="5">5 Stars</option>
+                    </select>
+                </div>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label is-small">Review</label>
+                <div class="control">
+                    <textarea id="review-text" class="textarea is-small" required></textarea>
+                </div>
+            </div>
+            <button type="submit" class="button is-small" id="review-submit">Submit</button>
+        </form>
+    </div>
+    {{/if}}
+    <div class="reviews-section">
+        <h3><strong>Reviews</strong></h3>
+        {{#if movie.reviews.length}}
+        <ul class="review-list">
+            {{#each movie.reviews}}
+            <li class="review-list-item">
+                <p class="review-title label is-small">{{user.username}}'s review{{#if can_delete }}<span> - <a id="{{id}}" onclick="deleteReview(event)">Delete</a></span></p>{{/if}}
+                <div class="review-info">
+                    <p>Rating: {{#each rating_arr}}<span class="fa fa-star review-star"></span>{{/each}}</p>
+                    <p>
+                        "{{ review_text }}"
+                    </p>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+        {{else}}
+        <p>No Reviews Yet.</p>
+        {{/if}}
+    </div>
+</div>
+{{#if loggedIn}}
+<script src="/javascript/single-movie.js"></script>
+{{/if}}

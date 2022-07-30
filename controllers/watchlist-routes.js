@@ -1,8 +1,8 @@
 const router = require('express').Router();
+const sequelize = require('../config/connection');
 const withAuth = require('../utils/auth');
-const { User, Movie, Watchlist } = require('../models')
+const { User, Movie, Watchlist, Review } = require('../models')
 const movieAttr = ['id', 'imdb_id', 'title', 'image']
-
 router.get('/', withAuth, (req, res) => {
     User.findOne({
         where: {
@@ -11,7 +11,17 @@ router.get('/', withAuth, (req, res) => {
         include: [
             {
                 model: Movie,
-                attributes: movieAttr,
+                attributes: [
+                    'id',
+                    'imdb_id',
+                    'title',
+                    'image',
+                ],
+                include: [
+                    {
+                        model: Review
+                    }
+                ],
                 through: Watchlist,
                 as: 'watchlisted_movies'
               }
