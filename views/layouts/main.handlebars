@@ -10,10 +10,10 @@
   <link rel="stylesheet" type="text/css" href="/stylesheets/all.css">
 </head>
 
-<body class="body has-background-grey-lighter">
+<body class="body has-background-grey-darker">
   <header>
     <div class="notif-cont" id="notif-cont"></div>
-    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-fixed-top has-background-grey-lighter" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="/">
           <h1 class="title is-size-2">Cinephelia</h1>
@@ -43,7 +43,7 @@
         <div class="navbar-end">
           <div class="navbar-item">
             {{#if loggedIn}}
-              <button class="button is-light" id="logout">
+              <button class="button is-danger" id="logout">
                 Sign out
               </button>
             {{else}}
