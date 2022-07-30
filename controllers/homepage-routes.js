@@ -47,7 +47,9 @@ router.get('/reviews/:id', (req, res) => {
     const movie = dbMovieData.get({
       plain: true
     })
+    let ratingSum = 0
     movie.reviews.forEach(review => {
+      ratingSum += review.rating
       review.rating_arr = []
       for (let i = 0; i<review.rating; i++) {
         review.rating_arr.push(0)
@@ -59,6 +61,9 @@ router.get('/reviews/:id', (req, res) => {
         review.can_delete = false
       }
     })
+    if (movie.reviews.length) {
+      movie.average_rating = ratingSum / movie.reviews.length
+    }
     res.render('single-movie', {
       movie: movie,
       loggedIn: req.session.loggedIn,
