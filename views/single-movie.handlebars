@@ -38,7 +38,7 @@
     </div>
     {{/if}}
     <div class="reviews-section">
-        <h3><strong>Reviews</strong></h3>
+        <h3><strong>Reviews</strong>{{#if movie.average_rating}} (Average Rating: {{ movie.average_rating }} {{format_plural_reviews 'Star' movie.average_rating}}) {{/if}}</h3>
         {{#if movie.reviews.length}}
         <ul class="review-list">
             {{#each movie.reviews}}
