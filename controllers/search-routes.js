@@ -8,4 +8,10 @@ router.get('/', withAuth, (req, res) => {
     });
 })
 
+router.get('/api-key/', (req, res) => {
+    res.json({
+        'api_key': process.env.IMDB_API_KEY
+    });
+})
+
 module.exports = router

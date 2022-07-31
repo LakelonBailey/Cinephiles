@@ -104,6 +104,10 @@
 .review-star {
     color: orange;
 }
+.result-list {
+    padding-left: 12px;
+    border-left: 2px solid gray;
+}
 
 @media screen and (max-width: 770px) {
     .result-cont {

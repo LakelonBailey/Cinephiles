@@ -21,21 +21,31 @@ document.querySelector('#search-type').addEventListener('change', event => {
 });
 
 
-const search = async type => {
+const getApiKey = async () => {
+    const response = await fetch('/search/api-key/', {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    return response
+}
+
+
+const search = async (type, api_key) => {
     let url;
     if (type == 'top250') {
-        url = 'https://imdb-api.com/en/API/Top250Movies/k_ee3v594a'
+        url = `https://imdb-api.com/en/API/Top250Movies/${api_key}`
     }
     else if (type == 'popular') {
-        url = 'https://imdb-api.com/en/API/MostPopularMovies/k_ee3v594a'
+        url = `https://imdb-api.com/en/API/MostPopularMovies/${api_key}`
     }
     else {
         let nameInput = document.getElementById('name-input').value
-        url = 'https://imdb-api.com/en/API/SearchMovie/k_ee3v594a/' + nameInput
+        url = `https://imdb-api.com/en/API/SearchMovie/${api_key}/` + nameInput
     }
 
     const response = await fetch(url)
-
     return response;
 }
 
@@ -44,22 +54,27 @@ document.getElementById('search-form').addEventListener('submit', event => {
     event.preventDefault();
     searchBtn.classList.add('is-loading');
     let type = document.getElementById('search-type').value;
-    search(type).then(res => {
-        if (res.ok) {
-            res.json().then(data => {
-                searchBtn.classList.remove('is-loading')
-
-                let results;
-                if (type == 'name') {
-                    results = data.results
+    getApiKey().then(res => {
+        res.json().then(data => {
+            const api_key = data.api_key
+            search(type, api_key).then(res => {
+                if (res.ok) {
+                    res.json().then(data => {
+                        searchBtn.classList.remove('is-loading')
+        
+                        let results;
+                        if (type == 'name') {
+                            results = data.results
+                        }
+                        else {
+                            results = data.items
+                        }
+                        
+                        displayResults(results)
+                    })
                 }
-                else {
-                    results = data.items
-                }
-                
-                displayResults(results)
             })
-        }
+        })
     })
 })
 
@@ -94,9 +109,7 @@ const displayResults = results => {
         `
     }
     else {
-        resultCont.innerHTML = `
-        <p>No Results Found</p>
-        `
+        displayMessage('No Results Found.', 'is-info')
     }
 }
 
