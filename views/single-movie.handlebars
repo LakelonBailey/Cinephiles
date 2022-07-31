@@ -5,7 +5,7 @@
             <img src="{{ movie.image }}" class="movie-img">
         </span>
         <span>
-            <button value="{{ movie.imdb_id }}" class="button" onclick="viewMovie(event)">More Info</button>
+            <button value="{{ movie.imdb_id }}" class="button is-small is-info is-rounded is-outlined" onclick="viewMovie(event)">More Info</button>
         </span>
     </div>
     {{#if loggedIn}}
@@ -33,7 +33,7 @@
                     <textarea id="review-text" class="textarea is-small" required></textarea>
                 </div>
             </div>
-            <button type="submit" class="button is-small" id="review-submit">Submit</button>
+            <button type="submit" class="button is-small is-success is-rounded" id="review-submit">Submit</button>
         </form>
     </div>
     {{/if}}
