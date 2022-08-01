@@ -1,3 +1,4 @@
+// sends a request to log in a user and handles different login scenarios
 async function loginFormHandler(event) {
   event.preventDefault();
 
@@ -23,6 +24,7 @@ async function loginFormHandler(event) {
   }
 }
 
+// signs up a new user and handles different signup errors, such as an invalid email
 async function signupFormHandler(event) {
   event.preventDefault();
 
@@ -52,6 +54,7 @@ async function signupFormHandler(event) {
 }
 
 
+// displays messages
 const displayMessage = (message, type) => {
   let notifCont = document.getElementById('notif-cont')
   let notif = document.createElement('div')

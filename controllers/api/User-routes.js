@@ -2,7 +2,7 @@ const router = require('express').Router();
 const validator = require('validator');
 const { User } = require('../../models');
 
-
+// creates a new user
 router.post('/', (req, res) => {
   const email = req.body.email
   if (!validator.isEmail(email)) {
@@ -32,7 +32,7 @@ router.post('/', (req, res) => {
       });
   }
 });
-  // start a session
+  // logs in a user
 router.post('/login', (req, res) => {
   User.findOne({
     where: {
@@ -67,7 +67,7 @@ router.post('/login', (req, res) => {
   });
 });
 
-  // end a session 
+  // logs out a user
   router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
       req.session.destroy(() => {

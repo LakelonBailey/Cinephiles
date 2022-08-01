@@ -1,5 +1,6 @@
 const searchBtn = document.getElementById('search-submit');
 
+// unhides the movie name input if the user chooses to search by name
 const handleSearchChange = (event) => {
     let type = event.target.value
     let nameInputField = document.getElementById('name-input-field')
@@ -21,6 +22,7 @@ document.querySelector('#search-type').addEventListener('change', event => {
 });
 
 
+// gets the api key from the backend
 const getApiKey = async () => {
     const response = await fetch('/search/api-key/', {
         method: 'GET',
@@ -31,7 +33,7 @@ const getApiKey = async () => {
     return response
 }
 
-
+// fetches data from imdb api
 const search = async (type, api_key) => {
     let url;
     if (type == 'top250') {
@@ -50,6 +52,7 @@ const search = async (type, api_key) => {
 }
 
 
+// waits for the search for to submit, then retrieves data from the imdb api
 document.getElementById('search-form').addEventListener('submit', event => {
     event.preventDefault();
     searchBtn.classList.add('is-loading');
@@ -79,6 +82,7 @@ document.getElementById('search-form').addEventListener('submit', event => {
 })
 
 
+// displays api data to the user
 const displayResults = results => {
     let resultCont = document.getElementById('result-cont')
     if (results.length) {
@@ -113,7 +117,7 @@ const displayResults = results => {
     }
 }
 
-
+// handles the add to watchlist button by sending a post request to the backend with data
 const addToWatchlist = event => {
     let imdbId = event.target.value;
     let movieTitle = document.getElementById(imdbId + '-title').textContent.trim();;
@@ -140,7 +144,7 @@ const addToWatchlist = event => {
     })
 }
 
-
+// displays a message
 const displayMessage = (message, type) => {
     let notifCont = document.getElementById('notif-cont')
     let notif = document.createElement('div')
