@@ -1,3 +1,4 @@
+// sends a request to delete a movie from a user's watchlist
 const deleteFromWatchlist = event => {
     const movieId = event.target.value;
     const url = '/api/movie/' + movieId
@@ -19,7 +20,7 @@ const deleteFromWatchlist = event => {
 }
 
 
-
+// displays a message
 const displayMessage = (message, type) => {
     let notifCont = document.getElementById('notif-cont')
     let notif = document.createElement('div')

@@ -3,18 +3,19 @@ const sequelize = require('../../config/connection');
 const { Movie, Watchlist } = require('../../models')
 
 
-//post movie to watchlist
+// Adds a movie to User's watchlist
 router.post('/', (req, res) => {
     const data = req.body;
     const imdbId = data.imdb_id
     const userId = req.session.user_id
-
+// if the movie already exists in the database, it will add that movie to the user's watchlist.
     Movie.findOne({
         where: {
             imdb_id: imdbId
         }
     }).then(dbMovieData => {
         if (dbMovieData) {
+            // checks to see if the user already has the movie in their database
            Watchlist.findOne({
                where: {
                    user_id: userId,
@@ -28,6 +29,7 @@ router.post('/', (req, res) => {
                   }) 
                }
                else {
+                   // creates the watchlist link between the user and the movie in the database
                 Watchlist.create(
                     {
                         user_id: userId,
@@ -44,6 +46,7 @@ router.post('/', (req, res) => {
            
         }
         else {
+            // adds the movie to the database then creates an association between that user and the movie
             Movie.create(data).then(dbMovieData => {
                 Watchlist.create({
                     user_id: userId,
@@ -85,6 +88,7 @@ router.delete('/:id', (req, res) => {
                 plain: true
             })
             let movieTitle = dbMovieData.title
+            // destroys the movie's presence in the database if no users have the movie on their watchlist
             if (movieData.watchlist_count == 0) {
                 Movie.destroy({
                     where: {

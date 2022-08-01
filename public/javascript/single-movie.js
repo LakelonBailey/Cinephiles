@@ -1,6 +1,8 @@
 const reviewForm = document.getElementById('review-form')
 const reviewSubmitBtn = document.getElementById('review-submit')
 
+
+// handles review form submission by sending the submitted data to the backend
 reviewForm.addEventListener('submit', event => {
     event.preventDefault();
     reviewSubmitBtn.classList.add('is-loading')
@@ -27,6 +29,8 @@ reviewForm.addEventListener('submit', event => {
     })
 })
 
+
+// sends a request to the backend to delete a review based on its id
 const deleteReview = event => {
     const reviewId = event.target.id;
 

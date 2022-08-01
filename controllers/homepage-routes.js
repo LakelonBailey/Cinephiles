@@ -2,6 +2,8 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Movie, Review, User } = require('../models')
 
+
+// renders the homepage with all movies in the database, ranking them based on their watchlist count
 router.get('/', (req, res) => {
   Movie.findAll({
     attributes: [
@@ -27,6 +29,7 @@ router.get('/', (req, res) => {
   })
 })
 
+// renders a page showing further information about a single movie
 router.get('/reviews/:id', (req, res) => {
   Movie.findOne({
     where: {
@@ -51,6 +54,7 @@ router.get('/reviews/:id', (req, res) => {
     movie.reviews.forEach(review => {
       ratingSum += review.rating
       review.rating_arr = []
+      // creates an iterable that allows the template to render starts for each rating point
       for (let i = 0; i<review.rating; i++) {
         review.rating_arr.push(0)
       }
@@ -72,6 +76,7 @@ router.get('/reviews/:id', (req, res) => {
   })
 })
 
+// deletes a review by its id
 router.delete('/reviews/:id', (req, res) => {
   Review.destroy({
     where: {
@@ -82,6 +87,7 @@ router.delete('/reviews/:id', (req, res) => {
   })
 })
 
+// adds a new review
 router.post('/reviews/', (req, res) => {
   Review.create({
     user_id: req.session.user_id,
@@ -95,7 +101,7 @@ router.post('/reviews/', (req, res) => {
   })
 })
 
-
+// renders the login page
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
       res.redirect('/');

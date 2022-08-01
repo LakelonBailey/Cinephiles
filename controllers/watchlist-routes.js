@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
 const { User, Movie, Watchlist, Review } = require('../models')
+
+// renders a user's watchlist
 router.get('/', withAuth, (req, res) => {
     User.findOne({
         where: {

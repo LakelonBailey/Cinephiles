@@ -1,38 +1,55 @@
+// renders the movie modal with additional information retrieved from a fetch request to imdb
 const viewMovie = event => {
   event.target.classList.add('is-loading')
   const modal = document.getElementById('view-movie-modal')
 
   const infoCont = document.getElementById('movie-info-cont')
   const imdbId = event.target.value
-  const url = 'https://imdb-api.com/en/API/Title/k_ee3v594a/' + imdbId
-  fetch(url)
+  getApiKey()
   .then(res => {
     res.json().then(data => {
-      console.log(data)
-      infoCont.innerHTML = `
-      <h3 class="title is-size-6">${data.fullTitle}</h3>
+      console.log(data.api_key)
+      const url = `https://imdb-api.com/en/API/Title/${data.api_key}/${imdbId}`
+      fetch(url)
+      .then(res => {
+        res.json().then(data => {
+          console.log(data)
+          infoCont.innerHTML = `
+          <h3 class="title is-size-6">${data.fullTitle}</h3>
 
-      <div class="modal-movie-info content">
-        <img src="${data.image}" class="modal-movie-img">
-        <div class="movie-text">
-          <p><strong>Director(s):</strong> ${data.directors}</p>
-          <p><strong>Star(s):</strong> ${data.stars}</p>
-          <p><strong>Writer(s):</strong> ${data.writers}</p>
-          <p><strong>IMDB Rating:</strong> ${data.imDbRating}</p>
-          <p><strong>Year:</strong> ${data.year}</p>
-          <p><strong>Runtime:</strong> ${data.runtimeStr}</p>
-          <p><strong>Revenue:</strong> ${data.boxOffice.cumulativeWorldwideGross}</p>
-        </div>
-      </div>
-      `
-      modal.classList.add('is-active')
-      event.target.classList.remove('is-loading')
+          <div class="modal-movie-info content">
+            <img src="${data.image}" class="modal-movie-img">
+            <div class="movie-text">
+              <p><strong>Director(s):</strong> ${data.directors}</p>
+              <p><strong>Star(s):</strong> ${data.stars}</p>
+              <p><strong>Writer(s):</strong> ${data.writers}</p>
+              <p><strong>IMDB Rating:</strong> ${data.imDbRating}</p>
+              <p><strong>Year:</strong> ${data.year}</p>
+              <p><strong>Runtime:</strong> ${data.runtimeStr}</p>
+              <p><strong>Revenue:</strong> ${data.boxOffice.cumulativeWorldwideGross}</p>
+            </div>
+          </div>
+          `
+          modal.classList.add('is-active')
+          event.target.classList.remove('is-loading')
+        })
+      })
     })
   })
+  
 
 }
 
-
+// gets api key from backend
+const getApiKey = async () => {
+  const response = await fetch('/search/api-key/', {
+      method: 'GET',
+      headers: {
+          'Accept': 'application/json'
+      }
+  })
+  return response
+}
 
 
 
