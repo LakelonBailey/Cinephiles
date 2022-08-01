@@ -96,7 +96,6 @@ router.post('/reviews/', (req, res) => {
     review_text: req.body.review_text
   })
   .then(dbReviewData => {
-    console.log(dbReviewData)
     res.json(dbReviewData)
   })
 })
