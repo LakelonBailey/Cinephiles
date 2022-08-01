@@ -54,22 +54,6 @@ async function signupFormHandler(event) {
 }
 
 
-// displays messages
-const displayMessage = (message, type) => {
-  let notifCont = document.getElementById('notif-cont')
-  let notif = document.createElement('div')
-  notif.innerHTML = `
-  <div class="notification ${type}">
-      ${message}
-  </div>
-  `
-  notifCont.appendChild(notif)
-  setTimeout(() => {
-      notif.remove()
-  }, 3000)
-}
-
-
 document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
 
 document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);

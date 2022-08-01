@@ -4,16 +4,14 @@ const viewMovie = event => {
   const modal = document.getElementById('view-movie-modal')
 
   const infoCont = document.getElementById('movie-info-cont')
-  const imdbId = event.target.value
+  const imdbId = event.target.value;
   getApiKey()
   .then(res => {
     res.json().then(data => {
-      console.log(data.api_key)
       const url = `https://imdb-api.com/en/API/Title/${data.api_key}/${imdbId}`
       fetch(url)
       .then(res => {
         res.json().then(data => {
-          console.log(data)
           infoCont.innerHTML = `
           <h3 class="title is-size-6">${data.fullTitle}</h3>
 
@@ -51,15 +49,20 @@ const getApiKey = async () => {
   return response
 }
 
-
-
-
-
-
-
-
-
-
+// displays a message
+const displayMessage = (message, type) => {
+  let notifCont = document.getElementById('notif-cont')
+  let notif = document.createElement('div')
+  notif.innerHTML = `
+  <div class="notification ${type}">
+      ${message}
+  </div>
+  `
+  notifCont.appendChild(notif)
+  setTimeout(() => {
+      notif.remove()
+  }, 1000)
+}
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -119,4 +122,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
