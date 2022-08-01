@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
                }
            }).then(dbWatchlistData => {
                if (dbWatchlistData) {
-                  res.status(404).json({
+                  res.status(400).json({
                       message: 'You already have this movie added to your Watchlist.',
                       type: 'is-danger'
                   }) 

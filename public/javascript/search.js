@@ -21,18 +21,6 @@ document.querySelector('#search-type').addEventListener('change', event => {
     handleSearchChange(event)
 });
 
-
-// gets the api key from the backend
-const getApiKey = async () => {
-    const response = await fetch('/search/api-key/', {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-    return response
-}
-
 // fetches data from imdb api
 const search = async (type, api_key) => {
     let url;
@@ -145,16 +133,3 @@ const addToWatchlist = event => {
 }
 
 // displays a message
-const displayMessage = (message, type) => {
-    let notifCont = document.getElementById('notif-cont')
-    let notif = document.createElement('div')
-    notif.innerHTML = `
-    <div class="notification ${type}">
-        ${message}
-    </div>
-    `
-    notifCont.appendChild(notif)
-    setTimeout(() => {
-        notif.remove()
-    }, 1000)
-}

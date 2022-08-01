@@ -86,10 +86,12 @@
     flex-wrap: wrap;
 }
 .movie-text {
+    width: 40%;
     margin-left: 12px;
 }
 .modal-movie-img {
-    width: 50%;
+    width: 40%;
+    min-width: 300px;
     height: auto;
 }
 .review-list-item {
@@ -103,6 +105,9 @@
 }
 .review-star {
     color: orange;
+}
+#view-movie-modal {
+    width: 100%;
 }
 .result-list {
     padding-left: 12px;
