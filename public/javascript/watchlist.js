@@ -18,19 +18,3 @@ const deleteFromWatchlist = event => {
         }
     })
 }
-
-
-// displays a message
-const displayMessage = (message, type) => {
-    let notifCont = document.getElementById('notif-cont')
-    let notif = document.createElement('div')
-    notif.innerHTML = `
-    <div class="notification ${type}">
-        ${message}
-    </div>
-    `
-    notifCont.appendChild(notif)
-    setTimeout(() => {
-        notif.remove()
-    }, 1000)
-}
